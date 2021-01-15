@@ -4,9 +4,11 @@ namespace App\Entity;
 
 use App\Repository\PaintingRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=PaintingRepository::class)
+ * @Vich\Uploadable()
  */
 class Painting
 {
@@ -63,6 +65,16 @@ class Painting
     private $technique;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $image;
+
+    /**
+     * @Vich\UploadableField(mapping="paintings", fileNameProperty="painting")
+     */
+    private $imageFile;
+
+    /**
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
@@ -71,6 +83,11 @@ class Painting
      * @ORM\Column(type="datetime")
      */
     private $updatedAt;
+
+    public function __construct()
+    {
+        $this -> updatedAt = new \DateTime();
+    }
 
     public function getId(): ?int
     {
@@ -183,6 +200,38 @@ class Painting
         $this->technique = $technique;
 
         return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImageFile()
+    {
+        return $this -> imageFile;
+    }
+
+    /**
+     * @param mixed $imageFile
+     */
+    public function setImageFile($imageFile): self
+    {
+        $this -> imageFile = $imageFile;
+
+        if($imageFile){
+            $this -> updatedAt = new \DateTime();
+        }
     }
 
     public function getCreatedAt(): ?\DateTimeInterface
