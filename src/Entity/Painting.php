@@ -8,7 +8,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=PaintingRepository::class)
- * @Vich\Uploadable()
+ * @ORM\Table(name="`painting`")
  */
 class Painting
 {
@@ -69,9 +69,6 @@ class Painting
      */
     private $image;
 
-    /**
-     * @Vich\UploadableField(mapping="paintings", fileNameProperty="painting")
-     */
     private $imageFile;
 
     /**
@@ -86,7 +83,8 @@ class Painting
 
     public function __construct()
     {
-        $this -> updatedAt = new \DateTime();
+        $this->setCreatedAt(new \DateTime);
+        $this->setUpdatedAt(new \DateTime);
     }
 
     public function getId(): ?int
@@ -223,11 +221,13 @@ class Painting
     }
 
     /**
-     * @param mixed $imageFile
+     * @return mixed $imageFile
+     * @throws \Exception
      */
-    public function setImageFile($imageFile): self
+    public function setImageFile(string $imageFile): void
     {
         $this -> imageFile = $imageFile;
+        $this -> image = $imageFile;
 
         if($imageFile){
             $this -> updatedAt = new \DateTime();
