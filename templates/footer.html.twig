@@ -1,0 +1,126 @@
+{% block footer %}
+    <footer>
+        <div class="footer">
+            <div class="footer_info">
+                <h3>Dijana Čović</h3>
+                <div class="home__contact">
+                    <p>Feel free to contact me for paintings, drawings or just to say hello :)</p>
+                    <div class="contact__social">
+                        <h4>Contact</h4>
+                        <p>dijanacovichrt@gmail.com</p>
+                        <div class="social">
+                            <a href="#"><img src="images\icons\facebook.svg" alt=""></a>
+                            <a href="#"><img src="images\icons\instagram.svg" alt=""></a>
+                            <a href="#"><img src="images\icons\pinterest.svg" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="square-deco-container container">
+                <div class="square-deco-content">
+                    <form action="#" method="post" class="form" id="contact_form">
+                        <fieldset>
+                            <!-- DROPDOWN  -->
+                            <div class="contact-dropbox-container">
+                                <p>What are u interested in?</p>
+                                <div id="selectbox_contactForm" class="selectbox selectbox--unselect" data-option="">
+                                    <div id="click_dropdown_contactForm" class="selectbox__displayWord">
+                                    -- CHOOSE --
+                                    </div>
+                                    <div class="option-container">
+                                        <div class="dropdown_options options_contactForm">
+                                            <input type="checkbox" class="option__checkbox" id="form01" name="category" value="BuyPainting">
+                                            <label class="option__label" for="form01" data-value="BuyPainting">I want to buy painting</label>
+                                        </div>
+                                        <div class="dropdown_options options_contactForm">
+                                            <input type="checkbox" class="option__checkbox" id="form02" name="category" value="ItemDesign">
+                                            <label class="option__label" for="form02" data-value="ItemDesign">I want an item with your design</label>
+                                        </div>
+                                        <div class="dropdown_options options_contactForm">
+                                            <input type="checkbox" class="option__checkbox" id="form03" name="category" value="CostumPainting">
+                                            <label class="option__label" for="form03" data-value="CostumPainting">I want you to paint a picture for me</label>
+                                        </div>
+                                        <div class="dropdown_options options_contactForm">
+                                            <input type="checkbox" class="option__checkbox" id="form05" name="category" value="Other">
+                                            <label class="option__label" for="form05" data-value="Other">Other</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- INPUTS -->
+                            <div class="inputFilled">
+                                <input id="contact_name" type="text" name="name" required pattern="\S+.*">
+                                <label for="contact_name" class="control-label">Name</label>
+                                <i class="bar-form"></i>
+                            </div>
+                            <div class="inputFilled">
+                                <input id="contact_email" type="email" name="email" required pattern="\S+.*">
+                                <label for="contact_email" class="control-label">E-mail</label>
+                                <i class="bar-form"></i>
+                            </div>
+                            <div class="inputFilled">
+                                <input id="contact_phone" type="number" name="phone" required="required">
+                                <label for="contact_phone" class="control-label">Phone</label>
+                                <i class="bar-form"></i>
+                            </div>
+                            <div class="inputFilled">
+                                <textarea id="contact_message" rows="3" cols="10" name="message" required></textarea>
+                                <label for="contact_message" class="control-label">What can I do for you?</label>
+                                <i class="bar-form"></i>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" checked="checked" name="terms"/>
+                                    <i class="helper"></i>I agree that Dijana Covic will save my information so she can contact me in the future.
+                                </label>
+                            </div>
+                        </fieldset>
+                        <div class="button-form">
+                            <button id="btn_form" class="default deco" type="submit" value="Send"><span>Send</span></button>
+                        </div>
+                        <span id="status"></span>
+                    </form>
+                </div>
+                <div class="square-deco-inner"></div>
+                <div class="square-deco-square-left-top"></div>
+                <div class="square-deco-square-left-bottom"></div>
+                <div class="square-deco-square-right-top"></div>
+                <div class="square-deco-square-right-bottom"></div>
+                <div class="square-deco-tall"></div>
+                <div class="square-deco-wide"></div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© Copyright 2021 | Design and development by <a href="https://www.linkedin.com/in/arneomv/" target="_blank">Arneo MV</a></p>
+        </div>
+    </footer>
+{% endblock %}
+
+    <script>    
+        $(document).ready(function() { 
+
+        //  DROPDOWN STYLE
+            if (typeof selectbox == 'undefined') {
+                const selectbox_contactForm = document.getElementById("selectbox_contactForm");
+                const click_dropdown_contactForm = document.getElementById("click_dropdown_contactForm");
+                const options_contactForm = document.querySelectorAll(".options_contactForm");
+                
+                // CONTACT BUTTON SEND
+                const submitbtn = document.getElementById('btn_form');
+
+                //  Contact Form
+                // Open dropdown
+                click_dropdown_contactForm.addEventListener("click", (e) => {
+                    e.stopPropagation();
+                    selectbox_contactForm.classList.toggle("selectbox--active");
+                });
+                // Show selected items
+                options_contactForm.forEach((option, index) => {
+                    option.addEventListener("click", (e) => {
+                        e.stopPropagation();
+                    });
+                });
+            }
+        });
+    </script>
+    
